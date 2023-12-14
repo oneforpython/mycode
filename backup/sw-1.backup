@@ -1,0 +1,31 @@
+! Command: show running-config
+! device: arista (vEOS, EOS-4.22.0F)
+!
+! boot system flash:/vEOS-lab.swi
+!
+transceiver qsfp default-mode 4x10G
+!
+hostname arista
+dns domain d17f287d-1ce0-4b18-92a9-566c9bba5fd5
+!
+ntp server 0.us.pool.ntp.org
+!
+spanning-tree mode mstp
+!
+no aaa root
+!
+username admin role network-admin secret sha512 $6$SkJQ9xCWNhbJhNJz$4iEUfq4K2vrIVspEYqefNEfSGxTenLXMHZ.5BsT256h5NpBxhAeJLxT.xr93BPHjvKWArEtdSwd.8SbjfV9CE/
+!
+interface Management1
+   ip address dhcp
+   dhcp client accept default-route
+!
+no ip routing
+!
+banner login
+Congrats! You set a banner | using an Ansible EOS module.
+Notice how YAML formatting lets us do multi-line
+strings
+EOF
+!
+end

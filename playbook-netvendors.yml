@@ -15,7 +15,7 @@
 
     - name: show eresult
       debug:
-        var: eresult
+        var: eresult.stdout_lines
 
     - name: Run Cisco NXOS command
       nxos_command:
