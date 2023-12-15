@@ -22,10 +22,9 @@
         folder: /
         name: "{{ vmname }}"
         state: present  # poweredon # present # restarted # suspended
-        cdrom:
-          type: iso
-            ### Commented out below entry since it is treating as a list
-            #iso_path: '[datastore1] ubuntu-18.04.6-live-server-amd64.iso'
+          #cdrom:
+          #type: iso
+          #iso_path: '[datastore1] ubuntu-18.04.6-live-server-amd64.iso'
         guest_id: ubuntu64Guest   #centos64Guest
         # This is hostname of particular ESXi server on which user wants VM to be deployed
         #esxi_hostname: 10.0.0.90
@@ -81,28 +80,5 @@
         username: root
         password: calvin23!
         name: "{{ deploy_vm.instance.hw_name }}"
-        delete_from_inventory: True
         state: absent
-
-    rescue:
-    - name: Poweroff the virtual machine
-      community.vmware.vmware_guest:
-        folder: /
-        validate_certs: false
-        hostname: 10.0.0.90
-        username: root
-        password: calvin23!
-        name: "{{ deploy_vm.instance.hw_name }}"
         delete_from_inventory: True
-        state: poweredoff
-
-    - name: Remove a virtual machine from inventory
-      community.vmware.vmware_guest:
-        folder: /
-        validate_certs: false
-        hostname: 10.0.0.90
-        username: root
-        password: calvin23!
-        name: "{{ deploy_vm.instance.hw_name }}"
-        delete_from_inventory: True
-        state: absent
